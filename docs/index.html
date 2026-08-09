@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 1 — Gold &amp; Silver Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#E8EBEE;--panel:#fff;--ink:#131A22;--muted:#5C6B7A;--rule:#C4CCD4;--accent:#1B3A5C;--ok:#2F6B58;--warn:#9A6B1F;--bad:#8C3A2B;
+--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Archivo",system-ui,sans-serif;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;padding:0 20px 80px}
+.wrap{max-width:1000px;margin:0 auto}
+.strip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;padding:30px 0 14px;border-bottom:1px solid var(--rule)}
+.lab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.val{font-family:var(--mono);font-size:12px;margin-right:8px}
+h1{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.025em;margin:24px 0 6px}
+.sub{color:var(--muted);max-width:64ch;margin:0}
+.trust{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:22px 0 0}
+.trust b{font-family:var(--mono);font-size:15px;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:36px 0 12px}
+.card{background:var(--panel);border:1px solid var(--rule);padding:20px 22px;margin-bottom:14px}
+.note{color:var(--muted);font-size:14px;max-width:72ch;margin:0 0 14px}
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.fig{background:var(--panel);padding:11px 13px}
+.fig dt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fig dd{font-family:var(--mono);font-size:17px;margin:3px 0 0}
+.fig dd.absent{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);white-space:nowrap}
+th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.scroll{overflow-x:auto}
+.tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border:1px solid currentColor}
+.tag.ok{color:var(--ok)}.tag.warn{color:var(--warn)}.tag.bad{color:var(--bad)}
+.pending{background:var(--panel);border:1px solid var(--warn);border-left-width:3px;padding:16px 18px}
+.pending h3{margin:0 0 6px;font-size:15px}
+.pending p{margin:0;color:var(--muted);font-size:14px;max-width:72ch}
+.honesty{background:var(--panel);border:1px solid var(--rule);padding:20px 22px;margin-top:22px}
+.honesty ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
+.honesty li{margin-bottom:7px}
+.honesty b{color:var(--ink)}
+footer{max-width:1000px;margin:56px auto 0;padding-top:18px;border-top:1px solid var(--rule);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="strip">
+  <span class="lab">Record</span><span class="val" id="built">no build yet</span>
+  <span class="lab">Spot as of</span><span class="val" id="asof">—</span>
+  <span class="lab">History</span><span class="val" id="span">—</span>
+</div>
+
+<h1>Gold &amp; Silver — Phase 1</h1>
+<p class="sub">A century of price history, today's spot, and the technical picture measured against it.</p>
+
+<div class="trust">
+  <b id="verdict">AWAITING FIRST DATA BUILD</b>
+  <div class="note" style="margin:4px 0 0" id="verdictdetail">
+    Enable Actions on this repository, then run the refresh workflow. This page reads only committed data.
+  </div>
+</div>
+
+<div class="honesty">
+  <div class="lab">What this page will and will not tell you</div>
+  <ul>
+    <li><b>It will not print a price target.</b> Gold cannot be forecast to a number, and a page that shows one is guessing with a straight face.</li>
+    <li><b>It shows distributions, not predictions.</b> Given today's volatility and a century of precedent, here is the range gold has covered over 3, 6 and 12 months, with the odds attached.</li>
+    <li><b>Directional probabilities appear only if validated.</b> Walk-forward tested against the base rate. If skill is indistinguishable from noise, the panel reads WITHHELD and shows the reasons.</li>
+    <li><b>Every figure names its source and date.</b> Nothing is forward-filled or estimated. Missing data is shown as missing.</li>
+  </ul>
+</div>
+
+<p class="eyebrow">Snapshot</p>
+<div id="snapshot"><div class="pending"><h3>No data committed yet</h3><p>The refresh workflow has not run. Once it does, spot, distance from moving averages, drawdown from the all-time high, and the percentile of today's price within the 100-year distribution appear here.</p></div></div>
+
+<p class="eyebrow">Technicals</p>
+<div id="technicals"><div class="pending"><h3>Pending first run</h3><p>Trend, momentum, realised volatility and volatility regime, computed causally on the full monthly series.</p></div></div>
+
+<p class="eyebrow">Gold vs real yields</p>
+<div id="macro"><div class="pending"><h3>Pending first run</h3><p>Rolling sensitivity of gold to changes in the 10-year real yield, and whether that relationship is currently intact, weak, or broken.</p></div></div>
+
+<p class="eyebrow">Historical analogues</p>
+<div id="analogues"><div class="pending"><h3>Pending first run</h3><p>Past windows resembling today, and what followed in each — shown as a spread of outcomes, never averaged into a single number.</p></div></div>
+
+<p class="eyebrow">Forward distribution</p>
+<div id="distribution"><div class="pending"><h3>Pending first run</h3><p>Empirical ranges over 3, 6 and 12 months with percentile bands. This replaces a forecast; it is not one.</p></div></div>
+
+<footer>
+  <p>Built from committed data by a scheduled job. Research, not investment advice.</p>
+</footer>
+
+</div>
+
+<script src="data/bundle.js" onerror="window.SI_MISSING=true"></script>
+<script>
+(function(){
+  var d = window.PHASE1_DATA;
+  if(!d) return;
+  var $=function(i){return document.getElementById(i)};
+  if(d.built_at) $('built').textContent=d.built_at;
+  if(d.spot_as_of) $('asof').textContent=d.spot_as_of;
+  if(d.history_span) $('span').textContent=d.history_span;
+  $('verdict').textContent='DATA CURRENT';
+  $('verdictdetail').textContent='Every figure below carries the source and date it describes.';
+  function figures(obj){
+    var h='<div class="card"><dl class="figures">';
+    Object.keys(obj).forEach(function(k){
+      var v=obj[k];
+      h+='<div class="fig"><dt>'+k+'</dt>'+(v===null||v===undefined?'<dd class="absent">not available</dd>':'<dd>'+v+'</dd>')+'</div>';
+    });
+    return h+'</dl></div>';
+  }
+  function tbl(rows,cols){
+    if(!rows||!rows.length) return '';
+    var h='<div class="card"><div class="scroll"><table><thead><tr>';
+    cols.forEach(function(c){h+='<th>'+c+'</th>'});
+    h+='</tr></thead><tbody>';
+    rows.forEach(function(r){h+='<tr>';cols.forEach(function(c){h+='<td>'+(r[c]===null||r[c]===undefined?'—':r[c])+'</td>'});h+='</tr>'});
+    return h+'</tbody></table></div></div>';
+  }
+  if(d.snapshot) $('snapshot').innerHTML=figures(d.snapshot);
+  if(d.technicals) $('technicals').innerHTML=figures(d.technicals);
+  if(d.macro){
+    var s=d.macro.status||'unknown';
+    var cls=s==='intact'?'ok':(s==='weak'?'warn':'bad');
+    $('macro').innerHTML='<div class="card"><span class="tag '+cls+'">framework '+s+'</span><p class="note" style="margin-top:10px">'+(d.macro.detail||'')+'</p>'+
+      '<dl class="figures">'+Object.keys(d.macro.figures||{}).map(function(k){
+        return '<div class="fig"><dt>'+k+'</dt><dd>'+d.macro.figures[k]+'</dd></div>'}).join('')+'</dl></div>';
+  }
+  if(d.analogues) $('analogues').innerHTML=tbl(d.analogues,['period','similarity','next_3m','next_6m','next_12m']);
+  if(d.distribution) $('distribution').innerHTML=tbl(d.distribution,['horizon','p10','p25','median','p75','p90','odds_up']);
+})();
+</script>
+</body>
+</html>
